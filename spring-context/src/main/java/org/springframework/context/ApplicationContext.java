@@ -48,7 +48,7 @@ import org.springframework.lang.Nullable;
  * lifecycle capabilities, ApplicationContext implementations detect and invoke
  * {@link ApplicationContextAware} beans as well as {@link ResourceLoaderAware},
  * {@link ApplicationEventPublisherAware} and {@link MessageSourceAware} beans.
- *
+ * first commit comment
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @see ConfigurableApplicationContext
