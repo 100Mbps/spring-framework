@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @author hanrongjie
+ *
  * @date 2020/9/23 上午8:16
  */
 public class Main {
