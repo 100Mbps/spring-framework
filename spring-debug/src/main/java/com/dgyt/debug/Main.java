@@ -3,6 +3,9 @@ package com.dgyt.debug;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * @author hanrongjie
+ */
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("Hello world");
