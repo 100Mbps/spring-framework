@@ -1,12 +1,17 @@
 package com.dgyt.debug;
 
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 import javax.validation.constraints.NotNull;
 
-public class A {
+public class A implements ApplicationContextAware {
     @NotNull
 	private String name;
 	private int age;
+	private ApplicationContext applicationContext;
 
 	public String getName() {
 		return name;
@@ -22,5 +27,13 @@ public class A {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
+	public ApplicationContext getApplicationContext(){
+		return applicationContext;
 	}
 }
