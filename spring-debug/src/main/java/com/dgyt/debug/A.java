@@ -1,6 +1,10 @@
 package com.dgyt.debug;
 
+
+import javax.validation.constraints.NotNull;
+
 public class A {
+    @NotNull
 	private String name;
 	private int age;
 
