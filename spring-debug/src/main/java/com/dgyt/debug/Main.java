@@ -11,7 +11,7 @@ public class Main {
 		System.out.println("Hello world");
 		ApplicationContext app  = new ClassPathXmlApplicationContext("app.xml");
 		A a = app.getBean(A.class);
-		a.getApplicationContext().getParentBeanFactory();
+		System.out.println(app.getParent());
 		System.out.println(app);
 		System.out.println(a);
 	}
