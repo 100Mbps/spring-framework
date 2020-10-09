@@ -80,6 +80,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 	@Override
 	public void afterPropertiesSet() {
 		if (this.validator == null) {
+			//寻找默认校验工厂，通过jdk的ServiceLoader加载ValidationProvider。
 			this.validator = Validation.buildDefaultValidatorFactory().getValidator();
 		}
 	}

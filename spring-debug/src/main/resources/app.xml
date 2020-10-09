@@ -7,7 +7,5 @@
   <property name="age" value="12"/>
  </bean>
 <bean id="factoryPostProcessor" class="com.dgyt.debug.MyBeanFactoryPostProcessor"/>
-<bean id="validation" class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor">
-
-</bean>
+<bean id="validation" class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor"/>
 </beans>

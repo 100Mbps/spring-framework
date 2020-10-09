@@ -15,7 +15,7 @@ dependencies {
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.5.Final'
     // https://mvnrepository.com/artifact/javax.el/javax.el-api
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
-// https://mvnrepository.com/artifact/org.glassfish/javax.el
+    // https://mvnrepository.com/artifact/org.glassfish/javax.el
     compile group: 'org.glassfish', name: 'javax.el', version: '3.0.0'
 
     compile(project(":spring-beans"))
