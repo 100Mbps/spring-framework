@@ -598,6 +598,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+		// 初始化property
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:
@@ -624,6 +625,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 *  <p>Replace any stub property sources with actual instances.
 	 * @see org.springframework.core.env.PropertySource.StubPropertySource
 	 * @see org.springframework.web.context.support.WebApplicationContextUtils#initServletPropertySources
+	 * @see org.springframework.web.context.support.GenericWebApplicationContext
 	 */
 	protected void initPropertySources() {
 		// For subclasses: do nothing by default.
