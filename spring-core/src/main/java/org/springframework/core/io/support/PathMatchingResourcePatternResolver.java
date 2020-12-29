@@ -202,7 +202,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 
 
 	private final ResourceLoader resourceLoader;
-
+    // ant path matcher
 	private PathMatcher pathMatcher = new AntPathMatcher();
 
 
@@ -277,6 +277,7 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	@Override
 	public Resource[] getResources(String locationPattern) throws IOException {
 		Assert.notNull(locationPattern, "Location pattern must not be null");
+		//class*:通配符匹配
 		if (locationPattern.startsWith(CLASSPATH_ALL_URL_PREFIX)) {
 			// a class path resource (multiple resources for same name possible)
 			if (getPathMatcher().isPattern(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()))) {

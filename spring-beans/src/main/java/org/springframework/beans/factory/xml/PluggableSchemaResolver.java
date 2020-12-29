@@ -173,7 +173,12 @@ public class PluggableSchemaResolver implements EntityResolver {
 		return schemaMappings;
 	}
 
+    //idea 在调试时会调用 toString 导致getSchemaMappings() 方法被调用
 
+	/**
+	 * @see DefaultNamespaceHandlerResolver#toString()
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		return "EntityResolver using schema mappings " + getSchemaMappings();

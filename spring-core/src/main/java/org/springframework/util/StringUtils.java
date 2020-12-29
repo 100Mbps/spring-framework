@@ -1152,6 +1152,7 @@ public abstract class StringUtils {
 	}
 
 	/**
+	 * 工具类，很重要出场率很高
 	 * Tokenize the given {@code String} into a {@code String} array via a
 	 * {@link StringTokenizer}.
 	 * <p>The given {@code delimiters} string can consist of any number of

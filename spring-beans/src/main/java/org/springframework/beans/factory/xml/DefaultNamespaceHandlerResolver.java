@@ -33,6 +33,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 /**
+ * //一些默认的namespancehandler resolver 除了
+ * http://www.springframework.org/schema/beans
+ * 其他的都不是默认的，需要加载然后处理
  * Default implementation of the {@link NamespaceHandlerResolver} interface.
  * Resolves namespace URIs to implementation classes based on the mappings
  * contained in mapping file.
@@ -179,7 +182,12 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 		return handlerMappings;
 	}
 
+   //这里的toString方法会在调试的时候被idea 调用，因此会调用getHandlerMappings方法
 
+	/**
+	 *
+	 * @see org.springframework.beans.factory.xml.PluggableSchemaResolver#toString
+	 */
 	@Override
 	public String toString() {
 		return "NamespaceHandlerResolver using mappings " + getHandlerMappings();

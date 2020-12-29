@@ -20,6 +20,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
+ * 上下文环境用来封装bean definition 读取过程中的各种相关的配置信息和状态
  * Context that gets passed along a bean definition reading process,
  * encapsulating all relevant configuration as well as state.
  *

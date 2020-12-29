@@ -22,6 +22,9 @@ import org.springframework.context.annotation.ComponentScanBeanDefinitionParser;
 
 /**
  * {@link org.springframework.beans.factory.xml.NamespaceHandler}
+ *  http://www.springframework.org/schema/beans
+ * for <context:component-scan/>
+ *  配置的地方  spring-context/src/main/resources/META-INF/spring.handlers
  * for the '{@code context}' namespace.
  *
  * @author Mark Fisher

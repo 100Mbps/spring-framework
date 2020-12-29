@@ -68,7 +68,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- *
+ * 具体解析bean定义的各个元素，类的构造方法，属性，和spring xml xsd 中定义的信息一直  list map etc
  * Stateful delegate class used to parse XML bean definitions.
  * Intended for use by both the main parser and any extension
  * {@link BeanDefinitionParser BeanDefinitionParsers} or
@@ -407,6 +407,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
+	 * 将xml的具体的element转换成BeanDefinition，同时返回一个BeanDefinitionHolder
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
@@ -494,6 +495,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
+	 * 将element转化成BeanDefinition
 	 * Parse the bean definition itself, without regard to name or aliases. May return
 	 * {@code null} if problems occurred during the parsing of the bean definition.
 	 */
@@ -522,8 +524,11 @@ public class BeanDefinitionParserDelegate {
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 
+			//处理构造函数    constructor-arg
 			parseConstructorArgElements(ele, bd);
+			//处理属性节点 property
 			parsePropertyElements(ele, bd);
+			// 处理qualifier节点
 			parseQualifierElements(ele, bd);
 
 			bd.setResource(this.readerContext.getResource());
@@ -1384,6 +1389,7 @@ public class BeanDefinitionParserDelegate {
 		if (namespaceUri == null) {
 			return null;
 		}
+		//如果不是spring自己本书具有的标签，则需要提供相关的namespace handler来处理相应的标签书属性
 		NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 		if (handler == null) {
 			error("Unable to locate Spring NamespaceHandler for XML schema namespace [" + namespaceUri + "]", ele);

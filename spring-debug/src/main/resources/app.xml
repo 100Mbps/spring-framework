@@ -1,36 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:han="http://www.hanrongjie1.com/schema/han"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	                       http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.hanrongjie1.com/schema/han
+                           http://www.hanrongjie1.com/schema/han/han.xsd"
+profile="dev">
+	<han:user id="bbb" name="hanrongjie" age="33" class="com.dgyt.debug.nshandler.User"/>
 
+	<!--
+	      哪个profile生效  spring.profiles.active  spring boot 里这个配置参数
+	      org.springframework.core.env.AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME
+	      org.springframework.core.env.ConfigurableEnvironment.setActiveProfiles
+	      org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.PROFILE_ATTRIBUTE
+	-->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!--
+	    org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseDefaultElement
+	-->
+	<import resource="app1.xml"/>
+	<alias name="a" alias="aa"/>
+
+
+
+
+
 	<bean id="a" class="com.dgyt.debug.A">
+		<property name="name" value="${name}" />
+		<property name="age" value="12"/>
+		<!-- org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseConstructorArgElements-->
+		<constructor-arg index="0">
+			<list>
+				<ref bean="b"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1" value="123"/>
+		<constructor-arg index="2" value="123"/>
+		<property name="son"   ref="b"/>
+		<qualifier  value="b"/>
+		<!--
+		   这篇文章包含了qualifier标签的使用方式
+		   https://knpcode.com/spring/spring-autowiring-example-using-xml-configuration/
+		   Bean definitions can provide qualifiers to match against annotations
+	       on a field or parameter for fine-grained autowire candidate resolution
+	       https://www.cnblogs.com/mjorcen/p/3647872.html
+	       @Qualifier("XXX") 中的 XX是 Bean 的名称，所以 @Autowired 和 @Qualifier 结合使用时，
+	       自动注入的策略就从 byType 转变成 byName 了
+	   -->
+<!--       <qualifier type="com.dgyt.debug.A" value="b" />-->
+	</bean>
+	<bean id="b" class="com.dgyt.debug.A">
 		<property name="name" value="${name}"/>
 		<property name="age" value="12"/>
+
 	</bean>
 	<bean id="factoryPostProcessor" class="com.dgyt.debug.MyBeanFactoryPostProcessor"/>
 	<bean id="validation" class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor"/>
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.user}"/>
-		<property name="password" value="${jdbc.password}"/>
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="filters" value="stat"/>
-		<property name="maxActive" value="20"/>
-		<property name="initialSize" value="1"/>
-		<property name="maxWait" value="60000"/>
-		<property name="minIdle" value="1"/>
-		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
-		<property name="minEvictableIdleTimeMillis" value="300000"/>
-		<property name="validationQuery" value="SELECT 'x'"/>
-		<property name="testWhileIdle" value="true"/>
-		<property name="testOnBorrow" value="false"/>
-		<property name="testOnReturn" value="false"/>
-		<property name="poolPreparedStatements" value="true"/>
-		<property name="maxPoolPreparedStatementPerConnectionSize" value="50"/>
-	</bean>
+<!--	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">-->
+<!--		<property name="url" value="${jdbc.url}"/>-->
+<!--		<property name="username" value="${jdbc.user}"/>-->
+<!--		<property name="password" value="${jdbc.password}"/>-->
+<!--		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--		<property name="filters" value="stat"/>-->
+<!--		<property name="maxActive" value="20"/>-->
+<!--		<property name="initialSize" value="1"/>-->
+<!--		<property name="maxWait" value="60000"/>-->
+<!--		<property name="minIdle" value="1"/>-->
+<!--		<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
+<!--		<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+<!--		<property name="validationQuery" value="SELECT 'x'"/>-->
+<!--		<property name="testWhileIdle" value="true"/>-->
+<!--		<property name="testOnBorrow" value="false"/>-->
+<!--		<property name="testOnReturn" value="false"/>-->
+<!--		<property name="poolPreparedStatements" value="true"/>-->
+<!--		<property name="maxPoolPreparedStatementPerConnectionSize" value="50"/>-->
+<!--	</bean>-->
 </beans>
